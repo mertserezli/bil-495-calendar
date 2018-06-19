@@ -5,6 +5,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   def index
     @appointments = Appointment.all
+	@messageFromCem="Dummy Cem was here"
   end
 
   # GET /appointments/1
@@ -70,5 +71,5 @@ class AppointmentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
       params.require(:appointment).permit(:description, :date, :notify)
-    end
+    end	
 end

@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_16_132557) do
+ActiveRecord::Schema.define(version: 2018_06_21_171613) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "description"
     t.datetime "date"
-    t.boolean "notify"
+    t.boolean "recursive"
+    t.integer "recurseDays"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -22,8 +22,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :notify %>
-    <%= form.check_box :notify %>
+    <%= form.label :recursive %>
+    <%= form.check_box :recursive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recurseDays %>
+    <%= form.number_field :recurseDays %>
   </div>
 
   <div class="actions">

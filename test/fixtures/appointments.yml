@@ -2,10 +2,12 @@
 
 one:
   description: MyString
-  date: 2018-06-16 16:25:57
-  notify: false
+  date: 2018-06-21 20:16:13
+  recursive: false
+  recurseDays: 1
 
 two:
   description: MyString
-  date: 2018-06-16 16:25:57
-  notify: false
+  date: 2018-06-21 20:16:13
+  recursive: false
+  recurseDays: 1

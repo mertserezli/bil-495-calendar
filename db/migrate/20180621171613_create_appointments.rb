@@ -3,7 +3,8 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
     create_table :appointments do |t|
       t.string :description
       t.datetime :date
-      t.boolean :notify
+      t.boolean :recursive
+      t.integer :recurseDays
 
       t.timestamps
     end

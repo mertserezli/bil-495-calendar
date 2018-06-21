@@ -11,8 +11,13 @@
 </p>
 
 <p>
-  <strong>Notify:</strong>
-  <%= @appointment.notify %>
+  <strong>Recursive:</strong>
+  <%= @appointment.recursive %>
+</p>
+
+<p>
+  <strong>Recursedays:</strong>
+  <%= @appointment.recurseDays %>
 </p>
 
 <%= link_to 'Edit', edit_appointment_path(@appointment) %> |

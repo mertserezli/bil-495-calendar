@@ -16,7 +16,8 @@ class AppointmentsTest < ApplicationSystemTestCase
 
     fill_in "Date", with: @appointment.date
     fill_in "Description", with: @appointment.description
-    fill_in "Notify", with: @appointment.notify
+    fill_in "Recursedays", with: @appointment.recurseDays
+    fill_in "Recursive", with: @appointment.recursive
     click_on "Create Appointment"
 
     assert_text "Appointment was successfully created"
@@ -29,7 +30,8 @@ class AppointmentsTest < ApplicationSystemTestCase
 
     fill_in "Date", with: @appointment.date
     fill_in "Description", with: @appointment.description
-    fill_in "Notify", with: @appointment.notify
+    fill_in "Recursedays", with: @appointment.recurseDays
+    fill_in "Recursive", with: @appointment.recursive
     click_on "Update Appointment"
 
     assert_text "Appointment was successfully updated"

@@ -99,61 +99,45 @@ body {font-family: Verdana, sans-serif;}
     <%= yield %>
     <div class="month">      
     <ul>
-      <li class="prev">&#10094;</li>
-      <li class="next">&#10095;</li>
+      <li class="prev" onClick=(changeMonth(0))>&#10094;</li>
+      <li class="next" onClick=(changeMonth(1))>&#10095;</li>
       <li id="month">
       <script>
-    function Month(){
-      var currentdate = new Date(); 
-      var m;
-      if(currentdate.getMonth()+1==1){
-        m="JANUARY"
-      }
-      if(currentdate.getMonth()+1==2){
-        m="FEBRUARY"
-      }
-      if(currentdate.getMonth()+1==3){
-        m="MARCH"
-      }
-      if(currentdate.getMonth()+1==4){
-        m="APRIL"
-      }
-      if(currentdate.getMonth()+1==5){
-        m="MAY"
-      }
-      if(currentdate.getMonth()+1==6){
-        m="JUNE"
-      }
-      if(currentdate.getMonth()+1==7){
-        m="JULY"
-      }
-      if(currentdate.getMonth()+1==8){
-        m="AUGUST"
-      }
-      if(currentdate.getMonth()+1==9){
-        m="SEPTEMBER"
-      }
-      if(currentdate.getMonth()+1==10){
-        m="OCTOBER"
-      }
-      if(currentdate.getMonth()+1==11){
-        m="NOVEMBER"
-      }
-      if(currentdate.getMonth()+1==12){
-        m="DECEMBER"
-      }
-      return m;
       
-
+        	var months=["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+        	var currentDate = new Date(); 
+        	var currentMonth= currentDate.getMonth();
+      		function changeMonth(index){
+      			if(index==0){
+      				document.getElementById("month").innerHTML = getPreviousMonth();
+      			}
+      			else{
+      				document.getElementById("month").innerHTML = getNextMonth(); 			
+      			}
+      		}
+    		function getCurrentMonth(){
+	 			 return months[currentMonth];
+    		}
+    		function getPreviousMonth(){
+    			if(currentMonth!=0)
+    				currentMonth-=1;
+    			return months[currentMonth];
+    		}
+    		function getNextMonth(){
+    			if(currentMonth!=11)
+    				currentMonth+=1;
+    			return months[currentMonth];
+    		}
+      		document.getElementById("month").innerHTML = getCurrentMonth(); 
       
-    }
-      document.getElementById("month").innerHTML = Month(); </script>
+      </script>
       </li>
     </ul>
   </div> 
   <ul class="days" id="days"> 
   
   <script>
+
   var jsonObject;
   function GetJSON(yourUrl){
     var Httpreq = new XMLHttpRequest(); // a new request
@@ -183,6 +167,12 @@ body {font-family: Verdana, sans-serif;}
   document.getElementById("days").innerHTML=Days();
   </script>
   </ul>
+  
+  
+  
+  
+  
+  
   </body>
  
   

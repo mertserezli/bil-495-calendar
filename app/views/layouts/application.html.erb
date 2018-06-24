@@ -107,12 +107,13 @@ body {font-family: Verdana, sans-serif;}
         	var months=["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
         	var currentDate = new Date(); 
         	var currentMonth= currentDate.getMonth();
+			var currentYear= currentDate.getFullYear();
       		function changeMonth(index){
       			if(index==0){
-      				document.getElementById("month").innerHTML = getPreviousMonth();
+      				document.getElementById("month").innerHTML = getPreviousMonth() + " " + currentYear;
       			}
       			else{
-      				document.getElementById("month").innerHTML = getNextMonth(); 			
+      				document.getElementById("month").innerHTML = getNextMonth() + " " + currentYear; 			
       			}
       		}
     		function getCurrentMonth(){
@@ -121,14 +122,22 @@ body {font-family: Verdana, sans-serif;}
     		function getPreviousMonth(){
     			if(currentMonth!=0)
     				currentMonth-=1;
+				else{
+					currentMonth=11;
+					currentYear-=1;
+				}
     			return months[currentMonth];
     		}
     		function getNextMonth(){
     			if(currentMonth!=11)
     				currentMonth+=1;
+				else{
+					currentMonth=0;
+					currentYear+=1;
+				}
     			return months[currentMonth];
     		}
-      		document.getElementById("month").innerHTML = getCurrentMonth(); 
+      		document.getElementById("month").innerHTML = getCurrentMonth() + " " + currentYear; 
       
       </script>
       </li>

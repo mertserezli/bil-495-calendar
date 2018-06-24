@@ -152,7 +152,10 @@ body {font-family: Verdana, sans-serif;}
       d=d+'<li>'+i;
       var y;
       for(y=0;y<jsonObject.length;y++){
-        if(jsonObject[y].date.substring(8,10)==i && Number(jsonObject[y].date.substring(5,7))==currentMonth + 1){
+        if( 
+		( jsonObject[y].date.substring(8,10)==i || ((i > Number(jsonObject[y].date.substring(8,10))) 
+		&& (i - Number(jsonObject[y].date.substring(8,10))) % jsonObject[y].recurseDays == 0) )
+		&& Number(jsonObject[y].date.substring(5,7))==currentMonth + 1){
           d= d+"#"+'<p>'+jsonObject[y].description+' '+jsonObject[y].date.substring(11,16)+'</p>';
         }
         else{

@@ -95,7 +95,7 @@ body {font-family: Verdana, sans-serif;}
         	var months=["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
         	var currentDate = new Date(); 
 			currentMonth= currentDate.getMonth();
-			var currentYear= currentDate.getFullYear();
+			currentYear= currentDate.getFullYear();
       		function changeMonth(index){
       			if(index==0){
       				document.getElementById("month").innerHTML = getPreviousMonth() + " " + currentYear;
@@ -137,7 +137,6 @@ body {font-family: Verdana, sans-serif;}
   <ul class="days" id="days"> 
   
   <script>
-  var jsonObject;
   function GetJSON(yourUrl){
     var Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET",yourUrl,false);
@@ -149,24 +148,40 @@ body {font-family: Verdana, sans-serif;}
     var d='';
     
     for(i=1;i<32;i++){
-      d=d+'<li>'+i;
+      d=d+'<li id='+i+' onclick=\"showApps(currentYear, currentMonth+1, id)\">'+i;
       var y;
       for(y=0;y<jsonObject.length;y++){
         if( 
 		( jsonObject[y].date.substring(8,10)==i || ((i > Number(jsonObject[y].date.substring(8,10))) 
 		&& (i - Number(jsonObject[y].date.substring(8,10))) % jsonObject[y].recurseDays == 0) )
-		&& Number(jsonObject[y].date.substring(5,7))==currentMonth + 1){
-          d= d+"#"+'<p>'+jsonObject[y].description+' '+jsonObject[y].date.substring(11,16)+'</p>';
+		&& Number(jsonObject[y].date.substring(5,7))==currentMonth + 1 && jsonObject[y].date.substring(0,4)==currentYear){
+          d= d+"#";
         }
-        else{
-          d=d+'<p></p>';
-        }
+        
       }
       d=d+'</li>';   
     } 
     return d;
   }
   document.getElementById("days").innerHTML=Days();
+  function showApps(year,month,day){
+      var result='';
+      for(var y=0;y<jsonObject.length;y++){
+        if(jsonObject[y].recursive){
+            if(Number(jsonObject[y].date.substring(8,10))<=day && Number(jsonObject[y].date.substring(5,7))==month && Number(jsonObject[y].date.substring(0,4))==year
+                && (day - jsonObject[y].date.substring(8,10)) % jsonObject[y].recurseDays==0){
+              result+=jsonObject[y].date.substring(11,16)+"--"+jsonObject[y].description+'\n';
+            }
+        }
+        else{
+            if(Number(jsonObject[y].date.substring(8,10))==day && Number(jsonObject[y].date.substring(5,7))==month && Number(jsonObject[y].date.substring(0,4))==year){
+                result+=jsonObject[y].date.substring(11,16)+"--"+jsonObject[y].description+'\n';    
+            }
+        } 
+      }
+      alert(result);
+      console.log(year+" "+month+" "+day);
+  }
   </script>
   </ul>
   

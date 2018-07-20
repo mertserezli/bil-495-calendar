@@ -133,7 +133,8 @@ body {font-family: Verdana, sans-serif;}
       </script>
       </li>
     </ul>
-  </div> 
+    </div> 
+    
   <ul class="days" id="days"> 
   
   <script>
@@ -143,7 +144,9 @@ body {font-family: Verdana, sans-serif;}
     Httpreq.send(null);
     return Httpreq.responseText;          
   }
-  jsonObject=JSON.parse(GetJSON('https://guarded-bayou-90785.herokuapp.com/appointments.json'));
+
+  jsonObject=JSON.parse(GetJSON('http://' + window.location.host + '/appointments.json'));
+
   function Days(){
     var d='';
     
@@ -163,7 +166,9 @@ body {font-family: Verdana, sans-serif;}
     } 
     return d;
   }
+
   document.getElementById("days").innerHTML=Days();
+
   function showApps(year,month,day){
       var result='';
       for(var y=0;y<jsonObject.length;y++){
@@ -182,14 +187,11 @@ body {font-family: Verdana, sans-serif;}
       alert(result);
       console.log(year+" "+month+" "+day);
   }
+
   </script>
+
   </ul>
-  
-  
-  
-  
-  
-  
+
   </body>
  
   

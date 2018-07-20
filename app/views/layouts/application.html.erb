@@ -145,7 +145,7 @@ body {font-family: Verdana, sans-serif;}
     return Httpreq.responseText;          
   }
 
-  jsonObject=JSON.parse(GetJSON('http://' + window.location.host + '/appointments.json'));
+  jsonObject=JSON.parse(GetJSON(window.location.origin + '/appointments.json'));
 
   function Days(){
     var d='';
@@ -190,7 +190,7 @@ body {font-family: Verdana, sans-serif;}
 
   function search(keyword){
   	  var xhttp = new XMLHttpRequest();
-      xhttp.open("POST", 'http://' + window.location.host + '//appointmentsSearch.json', true);
+      xhttp.open("POST",window.location.origin + '//appointmentsSearch.json', true);
       xhttp.setRequestHeader("Content-type", "application/json");
       var data = JSON.stringify({"description":keyword, "date":"2018-06-26T00:00:00.000Z", "recursive":false, "recurseDays":null});
           xhttp.onreadystatechange = function () {

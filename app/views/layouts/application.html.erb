@@ -134,7 +134,7 @@ body {font-family: Verdana, sans-serif;}
       </li>
     </ul>
     </div> 
-    
+
   <ul class="days" id="days"> 
   
   <script>
@@ -188,9 +188,33 @@ body {font-family: Verdana, sans-serif;}
       console.log(year+" "+month+" "+day);
   }
 
+  function search(keyword){
+  	  var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", 'http://' + window.location.host + '//appointmentsSearch.json', true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      var data = JSON.stringify({"description":keyword, "date":"2018-06-26T00:00:00.000Z", "recursive":false, "recurseDays":null});
+          xhttp.onreadystatechange = function () {
+          if (xhttp.readyState === 4 && xhttp.status === 200) {
+              var appointments = JSON.parse(xhttp.responseText);
+              var found = ""
+              for (i in appointments) {
+                  found += appointments[i].description + ": " + appointments[i].date.substr(0, appointments[i].date.length - 5) + "\n";
+              }
+              alert(found);
+          }
+      };
+      xhttp.send(data)
+  }
+
   </script>
 
   </ul>
+
+  <form onsubmit = "search(keyword.value);return false">
+      Search:<br>
+      <input type = "text" name = "keyword" value = "Enter a keyword to search">
+      <input type = "submit" value = "Submit">
+  </form> 
 
   </body>
  
